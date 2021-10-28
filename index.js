@@ -5,7 +5,7 @@ require('dotenv').config();
 const ObjectId = require('mongodb').ObjectId;
 
  const app = express();
- const port = 5000;
+ const port = process.env.PORT || 5000;
 
 //  middleware
 app.use(cors());
@@ -20,7 +20,7 @@ async function run() {
         await client.connect();
         console.log('Connect to Database');
         const database = client.db("carMechanic");
-        const servicesCollection = database.collection("services");
+        const servicesCollection = database.collection("services"); 
 
         //Get Api
         app.get('/services', async(req, res) =>{
